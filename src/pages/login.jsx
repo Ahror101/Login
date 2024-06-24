@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Divider } from "antd";
+import { Alert} from "antd";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -11,7 +11,9 @@ export default function Login() {
   function login() {
     if ((email === "admin@gmail.com", password === "admin1234")) {
       to("/cabinet");
-    } else alert("Email yoki parol notogri");
+    }else{
+      <Alert message="Error" type="error" showIcon />
+    }
   }
 
   function check() {
