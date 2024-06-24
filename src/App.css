@@ -1,12 +1,13 @@
 body {
-  background-color: #4F6F52;
+  background-color: #4f6f52;
 }
 
 .container {
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 230px;
+  position: relative;
 }
 
 .row {
@@ -17,6 +18,7 @@ body {
   background-color: #739072;
   gap: 15px;
   flex-direction: column;
+  border: 1px solid white;
 }
 
 .line input {
@@ -25,12 +27,33 @@ body {
   padding-inline: 15px;
   border-radius: 15px;
   margin-top: 10px;
-  border: none;
-  background-color: #86A789;
+  border: 1px solid white;
+  background-color: #86a789;
+}
+
+.line .password {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.line .password input {
+  width: calc(100% - 50px);
+  margin: 0;
+}
+
+.line .password button {
+  width: 40px;
+  height: 40px;
+
 }
 
 h2 {
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .line {
@@ -42,11 +65,22 @@ h2 {
   height: 45px;
   border-radius: 20px;
   margin-top: 20px;
-  background-color: #D0F288;
+  background-color: #d0f288;
   border: none;
   font-size: 17px;
 }
 
 .line h3 {
   font-weight: 400;
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    position: absolute;
+    left: 14px;
+    bottom: 100px;
+  }
+  .line input {
+    width: 300px;
+  }
 }
