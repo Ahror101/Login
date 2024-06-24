@@ -56,7 +56,7 @@ export default function Login() {
         <button onClick={login} className="knopka">
           Log in
         </button>
-        <Divider>Or</Divider>
+        {/* <Divider>Or</Divider> */}
       </div>
     </div>
   );
