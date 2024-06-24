@@ -1,69 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
+
+import {
+  TeamOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-const { Header, Content, Footer } = Layout;
-
-const items = new Array(15).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
-
-export default function Cabinet() {
+const { Header, Content, Footer, Sider } = Layout;
+function getItem(label, key, icon, children) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  };
+}
+const items = [
+  getItem("User", "sub1", <UserOutlined />, [
+    getItem("Tom", "3"),
+    getItem("Bill", "4"),
+    getItem("Alex", "5"),
+  ]),
+  getItem("Team", "sub2", <TeamOutlined />, [
+    getItem("Team 1", "6"),
+    getItem("Team 2", "8"),
+  ]),
+];
+const App = () => {
+  const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
   return (
-    <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
+    <Layout
+      style={{
+        minHeight: "100vh",
+      }}
+    >
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
       >
-        <div className="demo-logo" />
+        <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
+          defaultSelectedKeys={["1"]}
+          mode="inline"
           items={items}
+        />
+      </Sider>
+      <Layout>
+        <Header
           style={{
-            flex: 1,
-            minWidth: 0,
+            padding: 0,
+            background: colorBgContainer,
           }}
         />
-      </Header>
-      <Content
-        style={{
-          padding: "0 48px",
-        }}
-      >
-        <Breadcrumb
+        <Content
           style={{
-            margin: "16px 0",
+            margin: "0 16px",
+            
           }}
         >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div
+          <Breadcrumb
+            style={{
+              margin: "16px 0",
+            }}
+          >
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 360,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+              height: "600px",
+            }}
+          >
+            Bill is a cat.
+          </div>
+        </Content>
+        <Footer
           style={{
-            background: colorBgContainer,
-            minHeight: 280,
-            padding: 24,
-            borderRadius: borderRadiusLG,
+            textAlign: "center",
           }}
         >
-          Content
-        </div>
-      </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
-    </Layout>
+          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>    
   );
-}
+};
+export default App;
