@@ -85,6 +85,7 @@ h2 {
     position: absolute;
     left: 14px;
     bottom: 40px;
+    top: 50px;
   }
   .line input {
     width: 300px;
